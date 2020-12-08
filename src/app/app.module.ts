@@ -33,7 +33,7 @@ import { RecipeEffects } from './components/recipes/store/recipe.effects';
     AlertComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     FormsModule,
     StoreModule.forRoot(fromApp.appReducer),

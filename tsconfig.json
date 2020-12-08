@@ -18,7 +18,10 @@
           "experimentalDecorators": true,
           "allowJs": true
       }
-  }
+  },
+    {
+      "path": "./tsconfig.server.json"
+    }
 
 ]
 }
