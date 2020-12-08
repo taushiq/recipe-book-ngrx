@@ -2,8 +2,10 @@
   "name": "recipe-book",
   "version": "0.0.0",
   "scripts": {
+    "start:heroku": "node dist/recipe-book/server",
+    "postinstall": "npm run build:ssr",
     "ng": "ng",
-    "start": "npm install npm serve:ssr",
+    "start": "ng serve:ssr",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
