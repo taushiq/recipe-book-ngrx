@@ -1,0 +1,91 @@
+<br>
+<form [formGroup] = "recipeForm" (ngSubmit)="onSubmit()">
+<div class="row">
+    <div class="col-md-12">
+        <button [disabled]="!recipeForm.valid" type="submit" class="btn btn-success mr-2">Save</button>
+        <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="name"> Name </label>
+            <input type="text" id="name" class="form-control"
+            formControlName = "name" > 
+            <div class="text-danger" *ngIf="recipeForm.controls['name'].invalid && recipeForm.controls['name'].touched">
+                <small *ngIf="recipeForm.controls['name'].errors.required"> Name is mandatory</small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="imagePath"> Image URL </label>
+            <input type="text" id="imagePath" class="form-control"
+            formControlName = "imagePath" #imagePath> 
+            <div class="text-danger" *ngIf="recipeForm.controls['imagePath'].invalid && recipeForm.controls['imagePath'].touched">
+                <small *ngIf="recipeForm.controls['imagePath'].errors.required"> Image URL is mandatory</small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <img [src]="imagePath.value" class="img-fluid">
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="description"> Description </label>
+            <textarea type="text" id="description" class="form-control" rows="6"
+            formControlName = "description"></textarea>
+            <div class="text-danger" *ngIf="recipeForm.controls['description'].invalid && recipeForm.controls['description'].touched">
+                <small *ngIf="recipeForm.controls['description'].errors.required"> Description is mandatory</small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12" formArrayName = "ingredients">
+
+        <div class="row mb-2" *ngFor="let ingredientCtrl of controls; let i = index"  [formGroupName] = "i">
+            <div class="col-8">
+                <input type="text" class="form-control" formControlName = "name">
+                <div class="text-danger" *ngIf="ingredientCtrl.controls['name'].invalid && ingredientCtrl.controls['name'].touched">
+                    <small *ngIf="ingredientCtrl.controls['name'].errors.required"> Name is mandatory</small>
+                </div>
+            </div>
+            <div class="col-2">
+                <input type="number" class="form-control" formControlName = "amount">
+                <div class="text-danger" *ngIf="ingredientCtrl.controls['amount'].invalid && ingredientCtrl.controls['amount'].touched">
+                    <small *ngIf="ingredientCtrl.controls['amount'].errors.required"> Amount is mandatory</small>
+                </div>
+            </div>
+            <div class="col-2">
+                <button type="button" (click)="onDeleteIngredient(i)" class="btn btn-danger">X</button>
+            </div>
+            
+        </div>
+
+
+
+    </div>
+
+</div>
+<hr>
+<div class="row">
+    <div class="col-md-12">
+        <button type="button" class="btn btn-success" (click)="addIngredient()" >Add Ingredient</button>
+    </div>
+</div>
+
+</form>
+<br><br>
